@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Search, Loader } from 'lucide-react';
 
 interface ReportDetails {
@@ -22,8 +21,6 @@ export function ReportTracker() {
     null
   );
 
-  const router = useRouter();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -43,7 +40,8 @@ export function ReportTracker() {
       }
       const data = await response.json();
       setReportDetails(data);
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError('Unable to find report. Please check the ID and try again.');
     } finally {
       setLoading(false);
@@ -53,24 +51,18 @@ export function ReportTracker() {
   return (
     <div className="w-full">
       {/* Header Section */}
-      <div className="text-center my-8">
-        <div className="inline-flex h-8 items-center gap-2 rounded-full   bg-gradient-to-r from-blue-700 to-red-700 bg-[length:200%_200%] animate-policeSirenGradient px-4 text-sm text-zinc-300">
-          <Search className="w-4 h-4" />
-          Track Your Report Status
-        </div>
-        <h1 className="mt-10 bg-gradient-to-t from-red-700 to-white/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent">
+      <div className="text-center space-y-6">
+        <h1 className="mt-10 bg-gradient-to-t from-white to-white/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent">
           Track Your Report
-          <span className="block bg-gradient-to-t from-white to-blue-700 bg-clip-text text-transparent mb-4">
-            Stay Informed
-          </span>
+          <span className="block ">Stay Informed</span>
         </h1>
-        <p className=" text-zinc-400 max-w-xl mx-auto">
+        <p className=" text-zinc-400 max-w-xl mx-auto ">
           Enter your report ID to check the current status and updates
         </p>
       </div>
 
       {/* Dynamic Layout Container */}
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <div
           className={`transition-all duration-300 ease-in-out 
               ${
@@ -99,8 +91,7 @@ export function ReportTracker() {
                   value={reportId}
                   onChange={(e) => setReportId(e.target.value)}
                   className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl
-                               text-white placeholder-zinc-500 focus:outline-none focus:ring-2 
-                               focus:ring-sky-500/50 focus:border-transparent transition-all"
+                               text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-white/40 focus:border-white/40 transition-all"
                   placeholder="Enter your report ID"
                   disabled={loading}
                 />
@@ -128,8 +119,8 @@ export function ReportTracker() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-br from-red-500 to-red-600/50
-                             text-white py-3 px-4 rounded-xl hover:from-red-500 hover:to-red-500/50  transition-all duration-200 
+                className="w-full bg-gradient-to-r from-blue-600 to-red-600
+                             text-white py-3 px-4 rounded-xl hover:from-red-600 hover:to-blue-600 transition-all duration-200 
                              disabled:opacity-50 disabled:cursor-not-allowed
                              flex items-center justify-center space-x-2"
               >
@@ -153,7 +144,7 @@ export function ReportTracker() {
                 }`}
           >
             {reportDetails && (
-              <div className="rounded-xl border border-white/5 bg-black/30 backdrop-blur-xl p-6 h-full">
+              <div className="rounded-xl border border-white/5 bg-zinc-900/50 backdrop-blur-xl p-6 h-full">
                 <h2 className="text-xl font-semibold text-white flex items-center gap-2 mb-6">
                   <div className="h-2 w-2 rounded-full bg-yellow-400" />
                   Report Details

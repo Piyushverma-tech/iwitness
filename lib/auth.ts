@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from './prisma';
@@ -42,6 +40,7 @@ export const authOptions: AuthOptions = {
           email: user.email,
           name: user.name,
           role: user.role,
+          password: '********',
         };
       },
     }),

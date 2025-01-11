@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -13,18 +14,18 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full border-b border-white/5 bg-black/60 backdrop-blur-xl z-50">
+      <nav className="fixed top-0 left-0 w-full border-b border-white/5 bg-gray-950/40 backdrop-blur-xl z-50">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div className="flex items-center ">
               <Link href={'/'} className="flex items-center ">
-                <div className="h-13 w-13 flex items-center justify-center">
-                  <img
+                <div className="h-[4rem] w-[4rem] flex items-center justify-center">
+                  <Image
                     src="/iWitnessLogo.png"
                     alt="Logo"
-                    width={60}
-                    height={60}
+                    width={200}
+                    height={200}
                   />
                 </div>
                 <span className="text-2xl font-semibold text-white">
@@ -178,7 +179,7 @@ export default function Navbar() {
                 </Link>
                 <button
                   onClick={handleEmergencyCall}
-                  className="w-full ml-2 flex items-center justify-center gap-2 rounded bg-red-500/10 p-3 font-medium text-red-500 ring-1 ring-inset ring-red-500/20 hover:bg-red-500/20"
+                  className="w-full flex items-center justify-center gap-2 rounded bg-red-500/10 p-3 font-medium text-red-500 ring-1 ring-inset ring-red-500/20 hover:bg-red-500/20"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
                   Emergency: 112

@@ -16,39 +16,6 @@ export function LocationInput({
 
   const BASE_URL = 'http://api.positionstack.com/v1/';
 
-  const fetchCoordinates = async (address: string) => {
-    setIsGettingLocation(true);
-    setLocationError(null);
-
-    try {
-      const response = await fetch(
-        `${BASE_URL}forward?access_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${encodeURIComponent(
-          address
-        )}&limit=1`
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch location data.');
-      }
-
-      const data = await response.json();
-      if (data.data && data.data.length > 0) {
-        const { latitude, longitude } = data.data[0];
-        onCoordinatesChange?.(latitude, longitude);
-        onChange(`${latitude.toFixed(6)}, ${longitude.toFixed(6)}`);
-      } else {
-        throw new Error('No location found for the given address.');
-      }
-    } catch (error) {
-      console.error('Geocoding error:', error);
-      setLocationError(
-        error instanceof Error ? error.message : 'Failed to fetch location.'
-      );
-    } finally {
-      setIsGettingLocation(false);
-    }
-  };
-
   const reverseGeocode = async (latitude: number, longitude: number) => {
     setIsGettingLocation(true);
     setLocationError(null);
@@ -138,7 +105,7 @@ export function LocationInput({
           placeholder="Enter location or click GPS icon"
           className="w-full rounded-xl bg-zinc-900/50 border border-zinc-800 pl-4 pr-12 py-3.5
                      text-white transition-colors duration-200
-                     focus:outline-none focus:ring-2 focus:ring-sky-500/40"
+                     focus:outline-none focus:ring-2 focus:ring-white/40"
         />
         <button
           type="button"

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const Resources = () => {
@@ -53,10 +54,16 @@ const Resources = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8 py-8">
+      {/* Refined background gradients */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 -right-1/4 w-3/4 h-3/4 rounded-full bg-blue-500/5 blur-[100px]" />
+        <div className="absolute -bottom-1/4 -left-1/4 w-3/4 h-3/4 rounded-full bg-red-500/5 blur-[100px]" />
+        <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-blue-600/20 to-transparent blur-3xl" />
+      </div>
       {/* Header Section */}
       <header className="text-center mt-8 mb-12">
-        <h1 className="text-3xl font-extrabold text-blue-600 sm:text-4xl">
+        <h1 className="text-3xl font-extrabold text-white/80 sm:text-4xl">
           Resources
         </h1>
         <p className="mt-4 text-lg text-gray-400">
@@ -70,9 +77,11 @@ const Resources = () => {
         {resources.map((resource) => (
           <div
             key={resource.id}
-            className=" bg-gradient-to-br from-blue-800/10 to-red-800/10   rounded-lg shadow hover:shadow-lg border border-gray-600 transition transform hover:-translate-y-1"
+            className=" rounded-3xl bg-white/5 backdrop-blur-sm border border-neutral-800/50 transition-all duration-300 hover:bg-neutral-800/50 transform hover:-translate-y-1"
           >
-            <img
+            <Image
+              height={2000}
+              width={2000}
               src={resource.imageUrl}
               alt={resource.title}
               className="w-full h-48 object-cover rounded-t-lg"

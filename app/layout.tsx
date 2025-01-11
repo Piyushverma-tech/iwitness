@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { exportTraceState } from 'next/dist/trace';
 import Navbar from '@/components/Navbar';
 import { Providers } from './providers';
 

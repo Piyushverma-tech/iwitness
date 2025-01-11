@@ -21,6 +21,7 @@ export async function GET(
 
     return NextResponse.json(report);
   } catch (error) {
+    console.error('Error fetching report:', error);
     return NextResponse.json(
       { error: 'Failed to fetch report details' },
       { status: 500 }
@@ -46,6 +47,7 @@ export async function PATCH(
 
     return NextResponse.json(report);
   } catch (error) {
+    console.error('Error updating report:', error);
     return NextResponse.json(
       { error: 'Error updating report' },
       { status: 500 }

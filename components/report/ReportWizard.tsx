@@ -2,13 +2,14 @@
 import { useState } from 'react';
 import { ReportForm } from './ReportForm';
 import { ReportSubmitted } from './ReportFormCompleted';
+import { ReportData } from '@/app/types/reportData';
 
 export function ReportWizard() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [reportData, setReportData] = useState<any>(null);
+  const [reportData, setReportData] = useState<ReportData>({}); // Ensure type matches
 
-  const handleStepComplete = async (data: any) => {
-    setReportData({ ...reportData, ...data });
+  const handleStepComplete = (data: ReportData) => {
+    setReportData((prev) => ({ ...prev, ...data }));
 
     if (currentStep === 3) {
       return;
@@ -17,7 +18,7 @@ export function ReportWizard() {
   };
 
   return (
-    <div className="rounded-2xl bg-zinc-900 p-8">
+    <div>
       {currentStep === 1 && <ReportForm onComplete={handleStepComplete} />}
       {currentStep === 2 && (
         <ReportSubmitted data={reportData} onComplete={handleStepComplete} />
