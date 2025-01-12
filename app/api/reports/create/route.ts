@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { ReportType } from '@prisma/client';
+import { $Enums } from '@prisma/client';
 
 export async function POST(request: Request) {
   try {
@@ -14,13 +14,12 @@ export async function POST(request: Request) {
       latitude,
       longitude,
       image,
-      status,
     } = await request.json();
 
     const report = await prisma.report.create({
       data: {
         reportId,
-        type: type as ReportType,
+        type: type as $Enums.ReportType,
         title,
         description,
         reportType: specificType,
@@ -28,7 +27,7 @@ export async function POST(request: Request) {
         latitude: latitude || null,
         longitude: longitude || null,
         image: image || null,
-        status: status || 'PENDING',
+        status: $Enums.ReportStatus.PENDING,
       },
     });
 
