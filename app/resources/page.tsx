@@ -66,7 +66,7 @@ const Resources = () => {
         <h1 className="text-3xl font-extrabold text-white/80 sm:text-4xl">
           Resources
         </h1>
-        <p className="mt-4 text-lg text-gray-400">
+        <p className="mt-4 sm:text-lg text-sm text-gray-400">
           Explore a variety of tools, articles, and services to help you stay
           informed and prepared.
         </p>

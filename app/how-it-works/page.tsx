@@ -206,7 +206,7 @@ const HowItWorks: FC = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-zinc-950">
+    <div className="relative min-h-screen  bg-zinc-950">
       <HeroPattern />
 
       <div className="relative">

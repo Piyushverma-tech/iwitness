@@ -18,15 +18,15 @@ export default function SubmitReport() {
                 Secure & Anonymous
               </span>
             </div>
-            <h1 className="mt-8 bg-gradient-to-b from-white to-white/60 bg-clip-text text-5xl font-bold tracking-tight text-transparent">
+            <h1 className="mt-6 bg-gradient-to-b from-white to-white/60 bg-clip-text text-3xl sm:text-5xl font-bold tracking-tight text-transparent">
               Submit Report
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400 ">
+            <p className="mt-6 max-w-2xl text-sm sm:text-lg leading-relaxed text-zinc-400 ">
               Share your findings, anonymously and securely. Report any
               suspicious activity, crimes, or incidents that may have occurred.
             </p>
           </div>
-          <div className="mt-10 p-6">
+          <div className="my-10">
             {/* report wizard */}
             <ReportWizard />
           </div>

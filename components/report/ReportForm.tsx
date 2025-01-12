@@ -166,9 +166,11 @@ export function ReportForm({ onComplete }: ReportFormProps) {
             >
               <div className="flex flex-col items-center space-y-2">
                 {/* Emergency icon */}
-                <BsExclamationTriangle className="text-3xl text-red-500" />
+                <BsExclamationTriangle className="sm:text-3xl text-2xl text-red-500" />
 
-                <span className="font-medium text-red-500">Emergency</span>
+                <span className="font-medium text-[0.9rem] sm:text-[1rem] text-red-500">
+                  Emergency
+                </span>
                 <span className="text-xs text-zinc-400">
                   Immediate Response Required
                 </span>
@@ -191,9 +193,9 @@ export function ReportForm({ onComplete }: ReportFormProps) {
             >
               <div className="flex flex-col items-center space-y-2">
                 {/* Non-Emergency SVG */}
-                <IoIosInformationCircleOutline className="text-4xl text-orange-500" />
+                <IoIosInformationCircleOutline className="sm:text-4xl text-3xl text-orange-500" />
 
-                <span className="font-medium text-orange-500">
+                <span className="font-medium text-[0.9rem] sm:text-[1rem] text-orange-500">
                   Non Emergency
                 </span>
                 <span className="text-xs text-zinc-400">General Report</span>
@@ -247,7 +249,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
                       />
                     </svg>
                   </div>
-                  <p className="text-sm text-zinc-400">
+                  <p className="sm:text-sm text-xs text-zinc-400">
                     Drop an image here or click to upload
                   </p>
                 </div>

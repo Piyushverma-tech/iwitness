@@ -19,7 +19,7 @@ export default function Home() {
         <div className="px-6 py-[4rem] flex items-center justify-center min-h-screen">
           <div className="max-w-6xl w-full space-y-40">
             {/* Hero section */}
-            <div className="flex flex-col items-center text-center space-y-2">
+            <div className="flex flex-col items-center text-center ">
               {/* Logo */}
               <div className="relative group">
                 <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -39,7 +39,7 @@ export default function Home() {
 
               {/* Heading */}
               <div className="space-y-6">
-                <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+                <h1 className="text-4xl font-bold tracking-tight sm:text-7xl">
                   <span className="bg-gradient-to-r from-white/80 via-white/60 to-blue-600 bg-clip-text text-transparent">
                     Report Incident
                   </span>
@@ -48,7 +48,7 @@ export default function Home() {
                   </span>
                 </h1>
 
-                <p className="max-w-2xl text-lg leading-relaxed text-neutral-400 mx-auto">
+                <p className="max-w-2xl sm:text-lg text-sm leading-relaxed text-neutral-400 mx-auto">
                   iWitness bridges the gap between communities and authorities.
                   Submit reports, track progress, and access resources—all while
                   protecting your identity. Together, let&apos;s create safer

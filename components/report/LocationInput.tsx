@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Input } from '../ui/input';
 
 interface LocationInputProps {
   value: string;
@@ -97,7 +98,7 @@ export function LocationInput({
         *Location
       </label>
       <div className="relative">
-        <input
+        <Input
           type="text"
           autoComplete="street-address"
           value={value}
@@ -110,7 +111,7 @@ export function LocationInput({
         <button
           type="button"
           onClick={fetchCurrentLocation}
-          className="absolute right-6 top-1/2 -translate-y-1/2 p-1.5 ml-auto
+          className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 ml-auto
                    rounded-lg bg-sky-500/10 text-sky-400 
                    hover:bg-sky-500/20 transition-colors duration-200
                    disabled:opacity-50 disabled:cursor-not-allowed"

@@ -52,7 +52,7 @@ export function ReportTracker() {
     <div className="w-full">
       {/* Header Section */}
       <div className="text-center space-y-6">
-        <h1 className="mt-10 bg-gradient-to-t from-white to-white/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent">
+        <h1 className="mt-10 bg-gradient-to-t from-white to-white/80 bg-clip-text sm:text-4xl text-3xl font-bold tracking-tight text-transparent">
           Track Your Report
           <span className="block ">Stay Informed</span>
         </h1>
