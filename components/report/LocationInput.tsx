@@ -1,4 +1,6 @@
-import { useState } from 'react';
+/// <reference types="@types/google.maps" />
+
+import { useEffect, useRef, useState } from 'react';
 import { Input } from '../ui/input';
 
 interface LocationInputProps {
@@ -14,39 +16,37 @@ export function LocationInput({
 }: LocationInputProps) {
   const [isGettingLocation, setIsGettingLocation] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
 
-  const BASE_URL = 'http://api.positionstack.com/v1/';
-
-  const reverseGeocode = async (latitude: number, longitude: number) => {
-    setIsGettingLocation(true);
-    setLocationError(null);
-
-    try {
-      const response = await fetch(
-        `${BASE_URL}reverse?access_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${latitude},${longitude}&limit=1`
+  useEffect(() => {
+    if (
+      typeof google !== 'undefined' &&
+      google.maps &&
+      google.maps.places &&
+      inputRef.current
+    ) {
+      // Initialize Autocomplete
+      autocompleteRef.current = new google.maps.places.Autocomplete(
+        inputRef.current,
+        { types: ['geocode'] } // Restrict results to addresses
       );
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch location data.');
-      }
+      // Listen for place selection
+      autocompleteRef.current.addListener('place_changed', () => {
+        const place = autocompleteRef.current?.getPlace();
+        if (place) {
+          const address = place.formatted_address || '';
+          const location = place.geometry?.location;
 
-      const data = await response.json();
-      if (data.data && data.data.length > 0) {
-        const address = data.data[0].label || 'Unknown location';
-        onChange(address);
-        onCoordinatesChange?.(latitude, longitude);
-      } else {
-        throw new Error('No address found for the given coordinates.');
-      }
-    } catch (error) {
-      console.error('Reverse geocoding error:', error);
-      setLocationError(
-        error instanceof Error ? error.message : 'Failed to fetch location.'
-      );
-    } finally {
-      setIsGettingLocation(false);
+          if (address) onChange(address);
+          if (location) {
+            onCoordinatesChange?.(location.lat(), location.lng());
+          }
+        }
+      });
     }
-  };
+  }, [onChange, onCoordinatesChange]);
 
   const fetchCurrentLocation = async () => {
     setIsGettingLocation(true);
@@ -57,35 +57,33 @@ export function LocationInput({
         throw new Error('Geolocation is not supported by your browser.');
       }
 
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          await reverseGeocode(latitude, longitude);
-        },
-        (error) => {
-          switch (error.code) {
-            case error.PERMISSION_DENIED:
-              throw new Error(
-                'Please allow location access in your browser settings.'
-              );
-            case error.POSITION_UNAVAILABLE:
-              throw new Error('Location information is unavailable.');
-            case error.TIMEOUT:
-              throw new Error('Location request timed out.');
-            default:
-              throw new Error('An unknown error occurred.');
-          }
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 0,
+      const position = await new Promise<GeolocationPosition>(
+        (resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0,
+          });
         }
       );
+
+      const { latitude, longitude } = position.coords;
+      const geocoder = new google.maps.Geocoder();
+
+      const results = await geocoder.geocode({
+        location: { lat: latitude, lng: longitude },
+      });
+
+      if (results.results.length > 0) {
+        const address = results.results[0].formatted_address;
+        onChange(address);
+        onCoordinatesChange?.(latitude, longitude);
+      } else {
+        setLocationError('Unable to retrieve address from coordinates.');
+      }
     } catch (error) {
-      console.error('Location error:', error);
       setLocationError(
-        error instanceof Error ? error.message : 'Unable to get your location.'
+        error instanceof Error ? error.message : 'Unable to fetch location.'
       );
     } finally {
       setIsGettingLocation(false);
@@ -99,8 +97,9 @@ export function LocationInput({
       </label>
       <div className="relative">
         <Input
+          ref={inputRef}
           type="text"
-          autoComplete="street-address"
+          autoComplete="off"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="Enter location or click GPS icon"
