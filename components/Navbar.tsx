@@ -28,7 +28,7 @@ export default function Navbar() {
                     height={200}
                   />
                 </div>
-                <span className="text-2xl font-semibold text-white">
+                <span className="text-2xl opacity-0 sm:opacity-100 font-semibold text-white">
                   iWITNESS
                 </span>
               </Link>
