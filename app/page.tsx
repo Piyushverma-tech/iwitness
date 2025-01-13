@@ -16,20 +16,20 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative">
-        <div className="px-6 py-[4rem] flex items-center justify-center min-h-screen">
+        <div className="px-6 sm:py-[4rem] py-8 flex items-center justify-center min-h-screen">
           <div className="max-w-6xl w-full space-y-40">
             {/* Hero section */}
             <div className="flex flex-col items-center text-center ">
               {/* Logo */}
               <div className="relative group">
-                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 rounded-full sm:opacity-0 opacity-80 transition-opacity duration-500">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-red-500/20 rounded-full blur-xl" />
                 </div>
                 <div className="relative p-6">
                   <Image
                     src="/iWitnessLogo.png"
                     alt="Logo"
-                    className="h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                    className="h-32 w-auto object-contain transition-transform duration-500"
                     width={200}
                     height={200}
                     priority

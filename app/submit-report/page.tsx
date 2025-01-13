@@ -10,7 +10,7 @@ export default function SubmitReport() {
         <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-blue-600/20 to-transparent blur-3xl" />
       </div>
 
-      <main className="relative px-6 pt-32">
+      <main className="relative px-6 pt-8 sm:pt-32">
         <div className="mx-auto max-w-3xl">
           <div className="flex flex-col items-center text-center">
             <div className="h-[2rem] w-auto px-4 mb-4 flex items-center justify-center  bg-gradient-to-r from-blue-700 to-red-700 bg-[length:200%_200%] animate-policeSirenGradient rounded-3xl  ">

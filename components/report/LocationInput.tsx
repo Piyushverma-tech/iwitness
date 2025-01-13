@@ -32,7 +32,7 @@ export function LocationInput({
         { types: ['geocode'] } // Restrict results to addresses
       );
 
-      // Listen for place selection
+      //for place selection
       autocompleteRef.current.addListener('place_changed', () => {
         const place = autocompleteRef.current?.getPlace();
         if (place) {
