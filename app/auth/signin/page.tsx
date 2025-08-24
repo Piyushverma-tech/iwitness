@@ -36,6 +36,20 @@ export default function SignIn() {
     }
   };
 
+  const DemoCredentialsBox = () => (
+    <div className="  p-4 bg-neutral-900/50 backdrop-blur-sm shadow-xl border border-neutral-800 rounded-xl">
+      <div className="text-base text-gray-100 mb-2">Demo credentials:</div>
+      <div className="text-sm text-gray-200 space-y-1">
+        <div>
+          <span className="font-medium">Email:</span> demo@iwitness.com
+        </div>
+        <div>
+          <span className="font-medium">Password:</span> demo1234
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-neutral-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
       {/*background gradients */}
@@ -43,13 +57,15 @@ export default function SignIn() {
         <div className="absolute top-0 -right-1/4 w-3/4 h-3/4 rounded-full bg-blue-500/5 blur-[100px]" />
         <div className="absolute -bottom-1/4 -left-1/4 w-3/4 h-3/4 rounded-full bg-red-500/5 blur-[100px]" />
       </div>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h1 className="text-center text-3xl font-bold text-white/80  mb-2">
           Welcome Back
         </h1>
-        <h2 className="text-center text-sm text-neutral-400">
+        <h2 className="text-center text-sm text-neutral-400 mb-6">
           Sign in to access your admin dashboard
         </h2>
+        <DemoCredentialsBox />
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
